@@ -1,39 +1,43 @@
 // Дано четное число N (>0) и символы c1 и c2. Написать метод, который вернет строку длины N, которая состоит 
 // из чередующихся символов c1 и c2, начиная с c1. (6, 'a', 'b') -> "ababab"
 
+import javax.annotation.processing.SupportedSourceVersion;
+import java.util.Scanner;
 package lesson2;
-
-public class task1 {
-
-    public static void main(String[] args) {
-
-        System.out.println(compress("aaaabbbcdd"));
-    }
-        static String compress(String input) {
-            String result = "";
-            int count = 1;
-            char[] chars = input.toCharArray();
-            char tmp = chars[0];
-            for (int i = 1; i < chars.length; i++) {
-                char c = chars[i];
-            if (tmp == c) {
-                count++;
-            } else {
-                if (count > 1) {
-                    result += String.valueOf(tmp) + count;
-                } else {
-                result += tmp;
+    
+    public class task1 {
+        public static void main(String[] args) {
+            Scanner iScanner = new Scanner(System.in);
+            boolean flag = false;
+            int n = 0;
+            System.out.println("Put N - ");
+            while (n <= 0 || n % 2 != 0) {
+                while (!iScanner.hasNextInt()) {
+                    System.out.println("Not number");
+                    iScanner.next();
                 }
-                tmp = c;
-                count = 1;
+    
+                n = iScanner.nextInt();
+                if (n <= 0 || n % 2 != 0) {
+                    System.out.println("Wrong number");
+                }
             }
+            System.out.println(n);
+            System.out.println("Put c1");
+            char c1 = iScanner.next().charAt(0);
+            System.out.println(c1);
+            System.out.println("Put c2");
+            char c2 = iScanner.next().charAt(0);
+            System.out.println(c2);
+    
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < n; i++) {
+                if (i % 2 == 0)
+                    sb.append(c1);
+                else
+                    sb.append(c2);
             }
-            if (count > 1) {
-                result += String.valueOf(tmp) + count;
-            } else {
-                result += tmp;
-            }
-            return result;
-        }    
-
-}
+    
+            System.out.println(sb);
+        }
+    }
